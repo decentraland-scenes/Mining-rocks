@@ -102,6 +102,7 @@ function mineRock(rock: Entity){
       let inv = i.get(InventoryItem)
       if( inv.name == data.minerals[0].name){
         inv.amount += data.amounts[0]
+        inv.counter.value = inv.amount.toString()
         mineralExistsFlag = true
         log("adding to existing mineral")
       } 
