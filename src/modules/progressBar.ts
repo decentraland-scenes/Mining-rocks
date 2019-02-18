@@ -1,7 +1,8 @@
 import { Rock } from "./rocks";
 import { inventoryItems, InventoryItem, generateInventoryItem } from "./inventoryItem";
-import { inventoryContainer } from "./ui";
+import { inventoryContainer, durability } from "./ui";
 import { createFloatingText } from "./floatingText";
+import { Tool } from "./tool";
 
 
 @Component('progressBar')
@@ -27,6 +28,7 @@ export const progressBars = engine.getComponentGroup(ProgressBar)
 
 export class ProgressBarUpdate implements ISystem {
   camera: Camera
+  tool: Tool
   update(dt: number) {
 
     for (let bar of progressBars.entities) {
@@ -34,12 +36,19 @@ export class ProgressBarUpdate implements ISystem {
       let data = bar.get(ProgressBar)
       let distance = Vector3.DistanceSquared(this.camera.position, transform.position)
 
+      if (this.tool.durability <= 0){
+        log("Tool is wasted")
+        return
+      }
+
       if (data.ratio < 1) {
         data.ratio += (dt / 20) * data.speed
         // if ( distance > 5){
         //   log("went away from rock")
         //   engine.removeEntity(bar.getParent(), true)
         // }
+        this.tool.durability -= 0.1
+        durability.width = this.tool.durability.toString().concat("px")
       }
 
       let width = Scalar.Lerp(0, data.fullLength, data.ratio)
@@ -54,8 +63,9 @@ export class ProgressBarUpdate implements ISystem {
         }
     }
   }
-  constructor(camera: Camera){
+  constructor(camera: Camera, tool: Tool){
     this.camera = camera
+    this.tool = tool
   } 
 }
 

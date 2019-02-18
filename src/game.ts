@@ -3,6 +3,7 @@ import { Mineral } from "./modules/mineral";
 import { generateRock } from "./modules/rocks";
 import { generateInventoryItem } from "./modules/inventoryItem";
 import { FloatingTextUpdate } from "./modules/floatingText";
+import { Tool } from "./modules/tool";
 
 let rockAmount = 10
 
@@ -17,6 +18,9 @@ let testImage = "images/rock1.jpg"
 let btc = new Mineral("BTC", testImage)
 let eth = new Mineral("ETH", testImage)
 let mana = new Mineral("MANA", testImage)
+
+
+let pick = new Tool("Pick", testImage, 40, 1)
 
 // Object that tracks user position and rotation
 const camera = Camera.instance
@@ -61,7 +65,7 @@ floor.add(new Transform({
 engine.addEntity(floor)
 
 // Systems
-engine.addSystem(new ProgressBarUpdate(camera) )
+engine.addSystem(new ProgressBarUpdate(camera, pick) )
 engine.addSystem(new FloatingTextUpdate() )
 
 
