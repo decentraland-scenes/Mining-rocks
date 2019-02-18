@@ -2,6 +2,7 @@ import { ProgressBarUpdate, ProgressBar, createPotProgressBar, progressBars } fr
 import { Mineral } from "./modules/mineral";
 import { generateRock } from "./modules/rocks";
 import { generateInventoryItem } from "./modules/inventoryItem";
+import { FloatingTextUpdate } from "./modules/floatingText";
 
 let rockAmount = 10
 
@@ -42,7 +43,7 @@ for (let i = 0; i < rockAmount;  i ++){
   }
   let mineralAmount = 0
   if (mineral){
-    mineralAmount = Math.random() * 2 + 1
+    mineralAmount = Math.floor( Math.random() * 2000)/1000
   }
 
 
@@ -59,8 +60,11 @@ floor.add(new Transform({
 }))
 engine.addEntity(floor)
 
-// System
+// Systems
 engine.addSystem(new ProgressBarUpdate(camera) )
+engine.addSystem(new FloatingTextUpdate() )
+
+
 
 
 

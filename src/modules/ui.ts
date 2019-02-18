@@ -77,9 +77,13 @@ close.set(button)
 engine.addEntity(close)
 
 
-const testRock = new UIImageShape(container)
-testRock.source = testImage
-testRock.hAlign = 'right'
-testRock.width = '60px'
 
-
+// const testRock = new UIImageShape(container)
+// testRock.source = testImage
+// testRock.hAlign = 'left'
+// testRock.sourceLeft = `0px`
+// testRock.sourceTop = `0px`
+// testRock.sourceWidth = `1000px`
+// testRock.sourceHeight = `1000px`
+// testRock.width = `100px`
+// testRock.height = `100px`

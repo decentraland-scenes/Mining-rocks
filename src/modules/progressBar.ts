@@ -1,6 +1,7 @@
 import { Rock } from "./rocks";
 import { inventoryItems, InventoryItem, generateInventoryItem } from "./inventoryItem";
 import { inventoryContainer } from "./ui";
+import { createFloatingText } from "./floatingText";
 
 
 @Component('progressBar')
@@ -95,9 +96,10 @@ export function createPotProgressBar(
 function mineRock(rock: Entity){
   let data = rock.get(Rock)
   if (data.minerals[0]){
-    log(data.minerals[0].name)
+    let text = data.amounts[0].toString().concat(" ").concat(data.minerals[0].name)
+    log(text)
+    createFloatingText(text,rock)
     let mineralExistsFlag = false
-    // something + data.amounts
     for (let i of inventoryItems.entities){
       let inv = i.get(InventoryItem)
       if( inv.name == data.minerals[0].name){
