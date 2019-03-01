@@ -58,9 +58,10 @@ for (let i = 0; i < rockAmount;  i ++){
 
 // ground
 let floor = new Entity()
-floor.add(new GLTFShape("models/FloorBaseGrass.glb"))
-floor.add(new Transform({
-  position: new Vector3(5, 0, 5)
+floor.addComponent(new GLTFShape("models/FloorBaseGrass.glb"))
+floor.addComponent(new Transform({
+  position: new Vector3(8, 0, 8),
+  scale: new Vector3(1.6, 1.6, 1.6)
 }))
 engine.addEntity(floor)
 

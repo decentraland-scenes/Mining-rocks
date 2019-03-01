@@ -32,8 +32,8 @@ export class ProgressBarUpdate implements ISystem {
   update(dt: number) {
 
     for (let bar of progressBars.entities) {
-      let transform = bar.get(Transform)
-      let data = bar.get(ProgressBar)
+      let transform = bar.getComponent(Transform)
+      let data = bar.getComponent(ProgressBar)
       let distance = Vector3.DistanceSquared(this.camera.position, transform.position)
 
       if (this.tool.durability <= 0){
@@ -75,10 +75,10 @@ export function createPotProgressBar(
   height: number = 1
 ) {
   let background = new Entity()
-  background.add(new PlaneShape())
-  background.add(new Billboard(true, true ,true))
+  background.addComponent(new PlaneShape())
+  background.addComponent(new Billboard(true, true ,true))
   background.setParent(parent)
-  background.set(
+  background.addComponent(
     new Transform({
       position: new Vector3(0, height, 0),
       scale: new Vector3(0.82, 0.15, 1)
@@ -87,16 +87,16 @@ export function createPotProgressBar(
   engine.addEntity(background)
 
   let progressBar = new Entity()
-  progressBar.add(new PlaneShape())
-  progressBar.add(greenMaterial)
+  progressBar.addComponent(new PlaneShape())
+  progressBar.addComponent(greenMaterial)
   progressBar.setParent(background)
-  progressBar.set(
+  progressBar.addComponent(
     new Transform({
       position: new Vector3(0, 0, -0.05),
       scale: new Vector3(0.95, 0.8, 1)
     })
   )
-  progressBar.add(new ProgressBar(parent, speed))
+  progressBar.addComponent(new ProgressBar(parent, speed))
   engine.addEntity(progressBar)
 
   return progressBar
@@ -104,14 +104,14 @@ export function createPotProgressBar(
 
 
 function mineRock(rock: Entity){
-  let data = rock.get(Rock)
+  let data = rock.getComponent(Rock)
   if (data.minerals[0]){
     let text = data.amounts[0].toString().concat(" ").concat(data.minerals[0].name)
     log(text)
     createFloatingText(text,rock)
     let mineralExistsFlag = false
     for (let i of inventoryItems.entities){
-      let inv = i.get(InventoryItem)
+      let inv = i.getComponent(InventoryItem)
       if( inv.name == data.minerals[0].name){
         inv.amount += data.amounts[0]
         inv.counter.value = inv.amount.toString()

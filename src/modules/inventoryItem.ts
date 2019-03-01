@@ -56,7 +56,7 @@ export function generateInventoryItem(mineral: Mineral, amount: number, containe
 
 
     let ent = new Entity()
-    ent.add(new InventoryItem(mineral.name, amount, textAmount))
+    ent.addComponent(new InventoryItem(mineral.name, amount, textAmount))
     engine.addEntity(ent)
-    ent.add(bg)
+    ent.addComponent(bg)
   }

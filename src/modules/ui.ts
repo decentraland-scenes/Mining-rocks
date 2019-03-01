@@ -11,7 +11,7 @@ const ui = new Entity()
 const screenSpaceUI = new UIScreenSpaceShape()
 
 // Add screenspace component to entity
-ui.set(screenSpaceUI)
+ui.addComponent(screenSpaceUI)
 
 // Add entity to engine
 engine.addEntity(ui)
@@ -67,13 +67,13 @@ button.vAlign = 'bottom'
 button.top = '-80px'
 
 const close = new Entity()
-close.set(
-  new OnClick(() => {
+close.addComponent(
+  new OnPointerDown(() => {
     log('clicked on the close image')
     screenSpaceUI.visible = false
   })
 )
-close.set(button)
+close.addComponent(button)
 engine.addEntity(close)
 
 

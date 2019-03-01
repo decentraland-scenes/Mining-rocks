@@ -34,16 +34,16 @@ export class Rock {
 export function generateRock(minerals: Mineral[], amounts: number[]){
   let ent = new Entity()
   let rockIndex =  Math.floor( Math.random() * rocks.length)
-  ent.add(rocks[rockIndex])
+  ent.addComponent(rocks[rockIndex])
 
-  let x = (Math.random() * 6.5) + 1.75
-  let z = (Math.random() * 6.5) + 1.75
+  let x = (Math.random() * 12) + 2
+  let z = (Math.random() * 12) + 2
 
-  ent.add(new Transform({
+  ent.addComponent(new Transform({
     position: new Vector3(x, 0, z)
   }))
 
-  ent.add(new Rock(rockIndex, minerals, amounts))
+  ent.addComponent(new Rock(rockIndex, minerals, amounts))
 
   let height = 1
   if (rockIndex < 2){
@@ -54,9 +54,9 @@ export function generateRock(minerals: Mineral[], amounts: number[]){
 
   let speed = rockIndex + 1
 
-  ent.add(
-    new OnClick(e => {
-      let minerals = ent.get(Rock)
+  ent.addComponent(
+    new OnPointerDown(e => {
+      let minerals = ent.getComponent(Rock)
       minerals.progressBar = createPotProgressBar(ent, speed, height)
     })
   )

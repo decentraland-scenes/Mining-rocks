@@ -22,20 +22,20 @@ export function createFloatingText(
     height: number = 1
   ) {
     let text = new Entity()
-    text.add(new Billboard(true, true ,true))
+    text.addComponent(new Billboard(true, true ,true))
     //text.setParent(parent)
-    let pos = parent.get(Transform).position.clone()
+    let pos = parent.getComponent(Transform).position.clone()
     pos.y = height
-    text.set(
+    text.addComponent(
       new Transform({
         position: pos  // new Vector3(0, height, 0)
       })
     )
-    text.add(new FloatingText(speed))
+    text.addComponent(new FloatingText(speed))
     engine.addEntity(text)
   
     let textShape =  new TextShape(val)
-    text.add(textShape)
+    text.addComponent(textShape)
 
     textShape.fontSize = 50
     textShape.fontWeight = "bold"
@@ -48,9 +48,9 @@ export function createFloatingText(
     update(dt: number) {
   
       for (let t of texts.entities) {
-        let transform = t.get(Transform)
-        let text = t.get(FloatingText)
-        let textShape = t.get(TextShape)
+        let transform = t.getComponent(Transform)
+        let text = t.getComponent(FloatingText)
+        let textShape = t.getComponent(TextShape)
         transform.position.y += dt/2
         text.timeLeft -= (dt) * 2 * text.speed
         textShape.opacity *= 0.95
