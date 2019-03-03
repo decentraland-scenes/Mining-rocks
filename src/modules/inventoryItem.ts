@@ -24,12 +24,14 @@ export function generateInventoryItem(mineral: Mineral, amount: number, containe
 
     const bg = new UIContainerRectShape(container)
     bg.id = `mineral`
-    bg.thickness = 1
-    bg.background = 'green'
-    bg.width = '100%'
+    bg.thickness = 2
+    bg.background = '#84C0C6'
+    bg.width = '80%'
     bg.height = '60px'
     bg.hAlign = 'center'
-    bg.vAlign = 'top'
+    bg.vAlign = 'center'
+    bg.cornerRadius = 15
+   
  
 
   
@@ -40,10 +42,18 @@ export function generateInventoryItem(mineral: Mineral, amount: number, containe
     text.hAlign = 'left'
     text.resizeToFit = true
     text.fontSize = 10
-    text.color = 'black'
+    text.left = '20px'
+    text.color = '#343533'
   
     const image = new UIImageShape(bg)
-    image.vAlign = mineral.image
+    image.source = mineral.image
+    image.hAlign = 'center'
+    image.height = '20px'
+    image.width = '20px'
+    image.sourceTop = '0px'
+    image.sourceLeft = '0px'
+    image.sourceHeight = '20px'
+    image.sourceWidth = '20px'
 
     const textAmount = new UITextShape(bg)
     textAmount.id = `amount-${mineral}`
@@ -52,7 +62,8 @@ export function generateInventoryItem(mineral: Mineral, amount: number, containe
     textAmount.hAlign = 'right'
     textAmount.resizeToFit = true
     textAmount.fontSize = 10
-    textAmount.color = 'black'
+    textAmount.color = '#343533'
+    textAmount.paddingRight = '20px'
 
 
     let ent = new Entity()

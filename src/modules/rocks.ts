@@ -43,6 +43,7 @@ export function generateRock(minerals: Mineral[], amounts: number[]){
     position: new Vector3(x, 0, z)
   }))
 
+
   ent.addComponent(new Rock(rockIndex, minerals, amounts))
 
   let height = 1
