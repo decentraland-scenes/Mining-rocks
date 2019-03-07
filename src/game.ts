@@ -74,17 +74,17 @@ engine.addSystem(new FloatingTextUpdate() )
 
 
 // button down event
-input.subscribe("BUTTON_A_DOWN", e => {
+// input.subscribe("BUTTON_A_DOWN", e => {
   
-  if (e.hit && e.hit.length > 4){
-      log("button A Down", e.hit.length)
-      log("too far")
-      for (let bar of progressBars.entities) {
-        engine.removeEntity(bar.getParent(), true)
-      }
-    }
+//   if (e.hit && e.hit.length > 4){
+//       log("button A Down", e.hit.length)
+//       log("too far")
+//       for (let bar of progressBars.entities) {
+//         engine.removeEntity(bar.getParent(), true)
+//       }
+//     }
    
-})
+// })
 
 // button up esvent
 input.subscribe("BUTTON_A_UP", e => {

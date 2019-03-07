@@ -57,8 +57,14 @@ export function generateRock(minerals: Mineral[], amounts: number[]){
 
   ent.addComponent(
     new OnPointerDown(e => {
-      let minerals = ent.getComponent(Rock)
-      minerals.progressBar = createPotProgressBar(ent, speed, height)
+      let mineral = ent.getComponent(Rock)
+      mineral.progressBar = createPotProgressBar(ent, speed, height)
+      if (e.hit.length > 4){
+        log("button A Down", e.hit.length)
+        log("too far")
+        engine.removeEntity(mineral.progressBar.getParent(), true)
+        
+      }
     })
   )
   
