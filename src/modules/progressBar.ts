@@ -10,18 +10,17 @@ export class ProgressBar {
   ratio: number = 0
   fullLength: number = 0.9
   speed: number = 1
-  parent: Entity
-  constructor(parent: Entity, speed: number = 1) {
-    this.parent = parent
+  bar: Entity
+  height: number
+  constructor(speed: number = 1, height: number) {
     this.speed = speed
+    this.height = height
   }
 }
 
 
 
-// material for bars
-let greenMaterial = new Material()
-greenMaterial.albedoColor = Color3.Green()
+
 
 // component group grid positions
 export const progressBars = engine.getComponentGroup(ProgressBar)
@@ -29,11 +28,26 @@ export const progressBars = engine.getComponentGroup(ProgressBar)
 export class ProgressBarUpdate implements ISystem {
   camera: Camera
   tool: Tool
+  greenMaterial: Material
+
+  constructor(camera: Camera, tool: Tool){
+    this.camera = camera
+    this.tool = tool
+  } 
+
+  activate(){
+    // material for bars
+    let greenMaterial = new Material()
+    greenMaterial.albedoColor = Color3.Green()
+    this.greenMaterial = greenMaterial
+  }
+
   update(dt: number) {
 
     for (let bar of progressBars.entities) {
-      let transform = bar.getComponent(Transform)
       let data = bar.getComponent(ProgressBar)
+      let transform = data.bar.getComponent(Transform)
+      
       let distance = Vector3.DistanceSquared(this.camera.position, transform.position)
 
       if (this.tool.durability <= 0){
@@ -57,50 +71,75 @@ export class ProgressBarUpdate implements ISystem {
       if (data.ratio > 1) {
       
           // add items to inventory
-          mineRock(data.parent)
+          mineRock(bar)
           //engine.removeEntity(data.parent, true)
           
         }
     }
   }
-  constructor(camera: Camera, tool: Tool){
-    this.camera = camera
-    this.tool = tool
-  } 
+
+  onAddEntity(ent: Entity){
+    let bar = ent.getComponent(ProgressBar)
+    let background = new Entity()
+    background.addComponent(new PlaneShape())
+    background.addComponent(new Billboard(true, true ,true))
+    background.setParent(ent)
+    background.addComponent(
+      new Transform({
+        position: new Vector3(0, bar.height, 0),
+        scale: new Vector3(0.82, 0.15, 1)
+      })
+    )
+    engine.addEntity(background)
+  
+    let progressBar = new Entity()
+    progressBar.addComponent(new PlaneShape())
+    progressBar.addComponent(this.greenMaterial)
+    progressBar.setParent(background)
+    progressBar.addComponent(
+      new Transform({
+        position: new Vector3(0, 0, -0.05),
+        scale: new Vector3(0.95, 0.8, 1)
+      })
+    )
+    engine.addEntity(progressBar)
+
+    bar.bar = progressBar
+  }
 }
 
-export function createPotProgressBar(
-  parent: Entity,
-  speed: number = 1,
-  height: number = 1
-) {
-  let background = new Entity()
-  background.addComponent(new PlaneShape())
-  background.addComponent(new Billboard(true, true ,true))
-  background.setParent(parent)
-  background.addComponent(
-    new Transform({
-      position: new Vector3(0, height, 0),
-      scale: new Vector3(0.82, 0.15, 1)
-    })
-  )
-  engine.addEntity(background)
+// export function createProgressBar(
+//   parent: Entity,
+//   speed: number = 1,
+//   height: number = 1
+// ) {
+//   let background = new Entity()
+//   background.addComponent(new PlaneShape())
+//   background.addComponent(new Billboard(true, true ,true))
+//   background.setParent(parent)
+//   background.addComponent(
+//     new Transform({
+//       position: new Vector3(0, height, 0),
+//       scale: new Vector3(0.82, 0.15, 1)
+//     })
+//   )
+//   engine.addEntity(background)
 
-  let progressBar = new Entity()
-  progressBar.addComponent(new PlaneShape())
-  progressBar.addComponent(greenMaterial)
-  progressBar.setParent(background)
-  progressBar.addComponent(
-    new Transform({
-      position: new Vector3(0, 0, -0.05),
-      scale: new Vector3(0.95, 0.8, 1)
-    })
-  )
-  progressBar.addComponent(new ProgressBar(parent, speed))
-  engine.addEntity(progressBar)
+//   let progressBar = new Entity()
+//   progressBar.addComponent(new PlaneShape())
+//   progressBar.addComponent(greenMaterial)
+//   progressBar.setParent(background)
+//   progressBar.addComponent(
+//     new Transform({
+//       position: new Vector3(0, 0, -0.05),
+//       scale: new Vector3(0.95, 0.8, 1)
+//     })
+//   )
+//   progressBar.addComponent(new ProgressBar(parent, speed))
+//   engine.addEntity(progressBar)
 
-  return progressBar
-}
+//   return progressBar
+// }
 
 
 function mineRock(rock: Entity){
@@ -125,5 +164,5 @@ function mineRock(rock: Entity){
       log("new mineral", data.minerals[0].name)
     }
   }
-  engine.removeEntity(rock, true)
+  engine.removeEntity(rock)
 }

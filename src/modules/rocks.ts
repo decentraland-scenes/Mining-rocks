@@ -1,4 +1,4 @@
-import { createPotProgressBar } from "./progressBar";
+import { } from "./progressBar";
 import { Mineral } from "./mineral";
 
 let rock1 = new GLTFShape("models/RockLarge_02.glb")
@@ -58,11 +58,12 @@ export function generateRock(minerals: Mineral[], amounts: number[]){
   ent.addComponent(
     new OnPointerDown(e => {
       let mineral = ent.getComponent(Rock)
-      mineral.progressBar = createPotProgressBar(ent, speed, height)
+      
+      //mineral.progressBar = createProgressBar(ent, speed, height)
       if (e.hit.length > 4){
         log("button A Down", e.hit.length)
         log("too far")
-        engine.removeEntity(mineral.progressBar.getParent(), true)
+        engine.removeEntity(mineral.progressBar.getParent())
         
       }
     })

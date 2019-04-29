@@ -55,7 +55,7 @@ export function createFloatingText(
         text.timeLeft -= (dt) * 2 * text.speed
         textShape.opacity *= 0.95
         if (text.timeLeft < 0) {
-            engine.removeEntity(t, true)
+            engine.removeEntity(t)
         }
       }
     }

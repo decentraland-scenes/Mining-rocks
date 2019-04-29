@@ -74,7 +74,7 @@ engine.addSystem(new FloatingTextUpdate() )
 
 
 // button down event
-// input.subscribe("BUTTON_A_DOWN", e => {
+// input.subscribe("BUTTON_DOWN", e => {
   
 //   if (e.hit && e.hit.length > 4){
 //       log("button A Down", e.hit.length)
@@ -87,9 +87,9 @@ engine.addSystem(new FloatingTextUpdate() )
 // })
 
 // button up esvent
-input.subscribe("BUTTON_A_UP", e => {
+input.subscribe("BUTTON_UP", e => {
   for (let bar of progressBars.entities) {
-    engine.removeEntity(bar.getParent(), true)
+    engine.removeEntity(bar.getParent())
   }
 })
 
