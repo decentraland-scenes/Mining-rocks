@@ -57,7 +57,8 @@ export function generateRock(minerals: Mineral[], amounts: number[]){
 
   ent.addComponent(
     new OnPointerDown(e => {
-      let mineral = ent.getComponent(Rock)
+	  let mineral = ent.getComponent(Rock)
+	  log("clicked rock")
       
       //mineral.progressBar = createProgressBar(ent, speed, height)
       if (e.hit.length > 4){

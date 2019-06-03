@@ -17,7 +17,7 @@ export const texts = engine.getComponentGroup(FloatingText)
 
 export function createFloatingText(
     val: string,
-    parent: Entity,
+    parent: IEntity,
     speed: number = 1,
     height: number = 1
   ) {

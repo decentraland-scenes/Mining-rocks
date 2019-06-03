@@ -1,4 +1,4 @@
-import { ProgressBarUpdate, ProgressBar, createPotProgressBar, progressBars } from "./modules/progressBar";
+import { ProgressBarUpdate, ProgressBar, progressBars } from "./modules/progressBar";
 import { Mineral } from "./modules/mineral";
 import { generateRock } from "./modules/rocks";
 import { generateInventoryItem } from "./modules/inventoryItem";
@@ -88,6 +88,7 @@ engine.addSystem(new FloatingTextUpdate() )
 
 // button up esvent
 input.subscribe("BUTTON_UP", e => {
+  log("button up")
   for (let bar of progressBars.entities) {
     engine.removeEntity(bar.getParent())
   }

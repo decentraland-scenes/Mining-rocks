@@ -142,7 +142,7 @@ export class ProgressBarUpdate implements ISystem {
 // }
 
 
-function mineRock(rock: Entity){
+function mineRock(rock: IEntity){
   let data = rock.getComponent(Rock)
   if (data.minerals[0]){
     let text = data.amounts[0].toString().concat(" ").concat(data.minerals[0].name)
