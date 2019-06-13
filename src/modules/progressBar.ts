@@ -1,4 +1,4 @@
-import { Rock } from "./rocks";
+import { Rock, mineRock } from "./rocks";
 import { inventoryItems, InventoryItem, generateInventoryItem } from "./inventoryItem";
 import { inventoryContainer, durability } from "./ui";
 import { createFloatingText } from "./floatingText";
@@ -140,29 +140,3 @@ export class ProgressBarUpdate implements ISystem {
 
 //   return progressBar
 // }
-
-
-function mineRock(rock: IEntity){
-  let data = rock.getComponent(Rock)
-  if (data.minerals[0]){
-    let text = data.amounts[0].toString().concat(" ").concat(data.minerals[0].name)
-    log(text)
-    createFloatingText(text,rock)
-    let mineralExistsFlag = false
-    for (let i of inventoryItems.entities){
-      let inv = i.getComponent(InventoryItem)
-      if( inv.name == data.minerals[0].name){
-        inv.amount += data.amounts[0]
-        inv.counter.value = inv.amount.toString()
-        mineralExistsFlag = true
-        log("adding to existing mineral")
-      } 
-
-    }
-    if (mineralExistsFlag == false){
-      generateInventoryItem(data.minerals[0], data.amounts[0], inventoryContainer)
-      log("new mineral", data.minerals[0].name)
-    }
-  }
-  engine.removeEntity(rock)
-}

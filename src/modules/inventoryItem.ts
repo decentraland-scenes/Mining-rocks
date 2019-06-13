@@ -49,7 +49,7 @@ export function generateInventoryItem(mineral: Mineral, amount: number, containe
     text.vAlign = 'center'
     text.hAlign = 'left'
     text.fontAutoSize = true
-    text.fontSize = 20
+    text.fontSize = 2
     text.paddingLeft = 60
     text.color = Color4.FromHexString('#0F1217')
 
@@ -60,12 +60,8 @@ export function generateInventoryItem(mineral: Mineral, amount: number, containe
     textAmount.vAlign = 'center'
     textAmount.hAlign = 'right'
     textAmount.fontAutoSize = true
-    textAmount.fontSize = 20
+    textAmount.fontSize = 2
     textAmount.paddingRight = 80
     textAmount.color = Color4.FromHexString('#0F1217')
 
-    let ent = new Entity()
-    ent.addComponent(new InventoryItem(mineral.name, amount, textAmount))
-    engine.addEntity(ent)
-    ent.addComponent(container)
   }

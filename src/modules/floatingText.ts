@@ -37,7 +37,7 @@ export function createFloatingText(
     let textShape =  new TextShape(val)
     text.addComponent(textShape)
 
-    textShape.fontSize = 50
+    textShape.fontSize = 5
     textShape.fontWeight = "bold"
     textShape.color = Color3.Blue()
     
@@ -52,7 +52,7 @@ export function createFloatingText(
         let text = t.getComponent(FloatingText)
         let textShape = t.getComponent(TextShape)
         transform.position.y += dt/2
-        text.timeLeft -= (dt) * 2 * text.speed
+        text.timeLeft -= (dt) * text.speed
         textShape.opacity *= 0.95
         if (text.timeLeft < 0) {
             engine.removeEntity(t)

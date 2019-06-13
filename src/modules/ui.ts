@@ -4,25 +4,17 @@ let testImage = "images/rock1.jpg"
 
 
 ///// UI
-// Create entity
-const ui = new Entity()
 
 // Create screenspace component
 const screenSpaceUI = new UICanvas()
 
-// Add screenspace component to entity
-ui.addComponent(screenSpaceUI)
-
-// Add entity to engine
-engine.addEntity(ui)
-//
-
 const container = new UIContainerRect(screenSpaceUI)
 container.width = '90%'
 container.height = '90%'
-container.color = Color4.Blue() // we set global text color here
+container.color = Color4.FromHexString(`#7c92bcff`)
 container.hAlign = 'center'
 container.vAlign = 'center'
+
 
 
 // // We add separate rect container to act as a background with opacity
@@ -39,12 +31,14 @@ export const inventoryContainer = new UIContainerStack(container)
 inventoryContainer.adaptWidth = true
 // inventoryContainer.adaptHeight = true --- you can only set adaptWidth (X)OR adaptHeight for it to work correctly
 inventoryContainer.width = '50%'
+inventoryContainer.height = 20
 //inventoryContainer.top = '100px'
 //inventoryContainer.paddingLeft = 150
-inventoryContainer.color = Color4.Teal()  //FromHexString(`#42a4f4`)
+inventoryContainer.color = Color4.FromHexString(`#42a4f4ff`)
 inventoryContainer.hAlign = 'right'
 inventoryContainer.vAlign = 'center' 
 inventoryContainer.stackOrientation = 0
+inventoryContainer.positionX = -10
 
 
 //generateInventoryItem(btc, 1, inventoryContainer)
@@ -62,7 +56,7 @@ toolContainer.width = '30%'
 toolContainer.height = 400
 toolContainer.positionY = -80
 toolContainer.positionX = 50
-toolContainer.color = Color4.Teal()//FromHexString('#3a609e')
+toolContainer.color = Color4.FromHexString('#3a609eff')
 toolContainer.hAlign = 'left'
 toolContainer.vAlign = 'top'
 //toolContainer.cornerRadius = 10
@@ -75,20 +69,20 @@ toolTitle.vAlign = 'top'
 toolTitle.hAlign = 'left'
 toolTitle.width = '150px'
 toolTitle.height = '35px'
-toolTitle.paddingTop = 10
+toolTitle.positionX = 10
 toolTitle.paddingLeft = 10
-toolTitle.color = Color4.White()//FromHexString('#0F1217')
+toolTitle.color = Color4.FromHexString('#0F1217ff')
 
 const toolName = new UIText(toolContainer)
 toolName.value = "PickAxe"
-toolName.fontSize = 25
+toolName.fontSize = 20
 toolName.vAlign = 'top'
 //toolName.hAlign = 'right'
 toolName.width = '150px'
 toolName.height = '35px'
-toolName.positionX = 50
+toolName.positionX = 20
 toolName.paddingTop = 10
-toolName.color = Color4.White()//FromHexString('#0F1217')
+toolName.color = Color4.FromHexString('#0F1217ff')
 
 let testToolTexture = new Texture('images/pickaxe.jpeg')
 
@@ -99,8 +93,8 @@ toolPic.sourceLeft = 0
 toolPic.sourceTop = 0
 toolPic.sourceWidth = 1000
 toolPic.sourceHeight = 1000
-toolPic.width = `150px`
-toolPic.height = `150px`
+toolPic.width = `200px`
+toolPic.height = `200px`
 toolPic.positionX = 20
 toolPic.positionY = -30
 
@@ -110,43 +104,29 @@ durabilityLabel.fontSize = 20
 durabilityLabel.vAlign = 'bottom'
 durabilityLabel.hAlign = 'left'
 durabilityLabel.positionX = '15px'
-durabilityLabel.width = '85px'
+durabilityLabel.width = '75px'
 durabilityLabel.height = '30px'
 durabilityLabel.paddingBottom = 10
 durabilityLabel.color = Color4.FromHexString('#0f1217ff')
 
 const durabilityBg = new UIContainerRect(toolContainer)
 durabilityBg.color = Color4.Gray()
-durabilityBg.width = "200px"
+durabilityBg.width = "180px"
 durabilityBg.height = "25px"
 durabilityBg.vAlign = 'bottom'
 durabilityBg.hAlign = 'right'
-durabilityBg.positionX = 5
+durabilityBg.positionX = -5
+durabilityBg.positionY = 5
 
 
 export const durability = new UIContainerRect(durabilityBg)
-durability.color = Color4.Green()
+durability.color = Color4.FromHexString('#426d48ff')
 durability.width = "100px"
 durability.height = "25px"
 durability.vAlign = 'center'
 durability.hAlign = 'left'
 
 
-
-const close = new Entity()
-
-const clickableImage = new UIImage(container, new Texture('images/icon.png'))
-clickableImage.name = 'clickable-image'
-clickableImage.width = '92px'
-clickableImage.height = '91px'
-clickableImage.sourceWidth = 92
-clickableImage.sourceHeight = 91
-clickableImage.isPointerBlocker = true
-clickableImage.onClick = new OnClick(() => {
-	log('clicked on the close image')
-	screenSpaceUI.visible = false
-	screenSpaceUI.isPointerBlocker = false
-})
 
 
 // const button = new UIButton(container)
@@ -170,17 +150,53 @@ clickableImage.onClick = new OnClick(() => {
 //   })
 // )
 
-// engine.addEntity(close)
 
 
-//container.visible = false
+
+const closeIcon = new UIImage(container, new Texture('images/close-icon3.png'))
+closeIcon.name = 'clickable-image'
+closeIcon.width = '50px'
+closeIcon.height = '50px'
+closeIcon.hAlign = 'right'
+closeIcon.vAlign = 'top'
+closeIcon.sourceWidth = 128
+closeIcon.sourceHeight = 128
+closeIcon.isPointerBlocker = true
+closeIcon.onClick = new OnClick(() => {
+	container.visible = false
+	container.isPointerBlocker = false
+	log('clicked on the close image ', container.visible)
+})
+
+
+const alwaysOn = new UICanvas()
+
+
+
+const openImage = new UIImage(alwaysOn, new Texture('images/icon.png'))
+openImage.name = 'clickable-image'
+openImage.width = '50px'
+openImage.height = '50px'
+openImage.sourceWidth = 92
+openImage.sourceHeight = 91
+openImage.hAlign = 'right'
+openImage.vAlign = 'top'
+openImage.isPointerBlocker = true
+openImage.onClick = new OnClick(() => {
+	log('clicked on the open image')
+	container.visible = true
+	container.isPointerBlocker = true
+})
+
+
+// in-world trigger for UI
 
 const uiTrigger = new Entity()
 const transform = new Transform({ position: new Vector3(5, 1, 5), scale: new Vector3(0.3, 0.3, 0.3) })
 uiTrigger.addComponent(transform)
 
 uiTrigger.addComponent(
-  new OnPointerDown(() => {
+  new OnClick(() => {
 	container.visible = true
 	container.isPointerBlocker = true
   })

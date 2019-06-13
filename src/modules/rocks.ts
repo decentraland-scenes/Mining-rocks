@@ -1,5 +1,8 @@
 import { } from "./progressBar";
 import { Mineral } from "./mineral";
+import { createFloatingText } from "./floatingText";
+import { inventoryItems, InventoryItem, generateInventoryItem } from "./inventoryItem";
+import { inventoryContainer } from "./ui";
 
 let rock1 = new GLTFShape("models/RockLarge_02.glb")
 let rock2 = new GLTFShape("models/RockLarge_03.glb")
@@ -56,20 +59,61 @@ export function generateRock(minerals: Mineral[], amounts: number[]){
   let speed = rockIndex + 1
 
   ent.addComponent(
-    new OnPointerDown(e => {
-	  let mineral = ent.getComponent(Rock)
+    new OnClick(e => {
+	 
 	  log("clicked rock")
-      
+      //   let mineral = ent.getComponent(Rock)
       //mineral.progressBar = createProgressBar(ent, speed, height)
-      if (e.hit.length > 4){
-        log("button A Down", e.hit.length)
-        log("too far")
-        engine.removeEntity(mineral.progressBar.getParent())
-        
-      }
-    })
+      
+      mineRock(ent)
+  
+	})
   )
+
+
+//   ent.addComponent(
+//     new OnPointerDown(e => {
+// 	  let mineral = ent.getComponent(Rock)
+// 	  log("clicked rock")
+      
+//       //mineral.progressBar = createProgressBar(ent, speed, height)
+//       if (e.hit.length > 4){
+//         log("button A Down", e.hit.length)
+//         log("too far")
+//         engine.removeEntity(mineral.progressBar.getParent())
+        
+//       }
+//     })
+//   )
   
 
   engine.addEntity(ent)
 }
+
+
+
+
+export function mineRock(rock: IEntity){
+	let data = rock.getComponent(Rock)
+	if (data.minerals[0]){
+	  let text = data.amounts[0].toString().concat(" ").concat(data.minerals[0].name)
+	  log(text)
+	  createFloatingText(text,rock)
+	  let mineralExistsFlag = false
+	  for (let i of inventoryItems.entities){
+		let inv = i.getComponent(InventoryItem)
+		if( inv.name == data.minerals[0].name){
+		  inv.amount += data.amounts[0]
+		  inv.counter.value = inv.amount.toString()
+		  mineralExistsFlag = true
+		  log("adding to existing mineral")
+		} 
+  
+	  }
+	  if (mineralExistsFlag == false){
+		generateInventoryItem(data.minerals[0], data.amounts[0], inventoryContainer)
+		log("new mineral", data.minerals[0].name)
+	  }
+	}
+	engine.removeEntity(rock)
+  }

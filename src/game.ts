@@ -66,7 +66,7 @@ floor.addComponent(new Transform({
 engine.addEntity(floor)
 
 // Systems
-engine.addSystem(new ProgressBarUpdate(camera, pick) )
+//engine.addSystem(new ProgressBarUpdate(camera, pick) )
 engine.addSystem(new FloatingTextUpdate() )
 
 
