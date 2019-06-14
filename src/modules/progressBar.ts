@@ -10,7 +10,7 @@ export class ProgressBar {
   ratio: number = 0
   fullLength: number = 0.9
   speed: number = 1
-  bar: Entity
+  bar: IEntity
   height: number
   constructor(speed: number = 1, height: number) {
     this.speed = speed
@@ -78,7 +78,7 @@ export class ProgressBarUpdate implements ISystem {
     }
   }
 
-  onAddEntity(ent: Entity){
+  onAddEntity(ent: IEntity){
     let bar = ent.getComponent(ProgressBar)
     let background = new Entity()
     background.addComponent(new PlaneShape())
@@ -109,7 +109,7 @@ export class ProgressBarUpdate implements ISystem {
 }
 
 // export function createProgressBar(
-//   parent: Entity,
+//   parent: IEntity,
 //   speed: number = 1,
 //   height: number = 1
 // ) {

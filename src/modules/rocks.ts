@@ -23,7 +23,7 @@ export class Rock {
   size: number
   minerals: null | Mineral[]
   amounts: number[]
-  progressBar: Entity
+  progressBar: IEntity
 
 
   constructor( size: number, minerals: Mineral[], amounts: number[] ){

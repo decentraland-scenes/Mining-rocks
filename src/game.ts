@@ -9,7 +9,6 @@ let rockAmount = 10
 
 let testImage = "images/rock1.jpg"
 
-
 // let btcMaterial = new Material()
 // let ethMaterial = new Material()
 // let manaMaterial = new Material()

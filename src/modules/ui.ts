@@ -15,7 +15,8 @@ container.color = Color4.FromHexString(`#7c92bcff`)
 container.hAlign = 'center'
 container.vAlign = 'center'
 
-
+container.visible = false
+container.isPointerBlocker = false
 
 // // We add separate rect container to act as a background with opacity
 // const bg = new UIContainerRect(container)
@@ -31,13 +32,13 @@ export const inventoryContainer = new UIContainerStack(container)
 inventoryContainer.adaptWidth = true
 // inventoryContainer.adaptHeight = true --- you can only set adaptWidth (X)OR adaptHeight for it to work correctly
 inventoryContainer.width = '50%'
-inventoryContainer.height = 20
+inventoryContainer.height = 130
 //inventoryContainer.top = '100px'
 //inventoryContainer.paddingLeft = 150
 inventoryContainer.color = Color4.FromHexString(`#42a4f4ff`)
 inventoryContainer.hAlign = 'right'
 inventoryContainer.vAlign = 'center' 
-inventoryContainer.stackOrientation = 0
+inventoryContainer.stackOrientation = 1
 inventoryContainer.positionX = -10
 
 
@@ -115,7 +116,7 @@ durabilityBg.width = "180px"
 durabilityBg.height = "25px"
 durabilityBg.vAlign = 'bottom'
 durabilityBg.hAlign = 'right'
-durabilityBg.positionX = -5
+durabilityBg.positionX = -55
 durabilityBg.positionY = 5
 
 
@@ -125,30 +126,6 @@ durability.width = "100px"
 durability.height = "25px"
 durability.vAlign = 'center'
 durability.hAlign = 'left'
-
-
-
-
-// const button = new UIButton(container)
-// button.text = 'Close UI'
-// button.fontSize = 20
-// button.color = Color4.Yellow() 
-// //button.cornerRadius = 10
-// button.thickness = 2
-// button.width = '150px'
-// button.height = '50px'
-// //button.vAlign = 'bottom'
-// button.positionY = `-80%`
-// button.positionX = `50%`
-// //button.shadowColor = Color4.Teal()//FromHexString("#46B1C9")
-// close.addComponent(button)
-
-// close.addComponent(
-//   new OnPointerDown(() => {
-//     log('clicked on the close image')
-//     screenSpaceUI.visible = false
-//   })
-// )
 
 
 
@@ -173,12 +150,15 @@ const alwaysOn = new UICanvas()
 
 
 
-const openImage = new UIImage(alwaysOn, new Texture('images/icon.png'))
+
+
+
+const openImage = new UIImage(alwaysOn, testToolTexture)
 openImage.name = 'clickable-image'
 openImage.width = '50px'
 openImage.height = '50px'
-openImage.sourceWidth = 92
-openImage.sourceHeight = 91
+openImage.sourceWidth = 1000
+openImage.sourceHeight = 1000
 openImage.hAlign = 'right'
 openImage.vAlign = 'top'
 openImage.isPointerBlocker = true
