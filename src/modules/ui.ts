@@ -136,12 +136,13 @@ closeIcon.onClick = new OnClick(() => {
 })
 
 
-const alwaysOn = new UICanvas()
+const alwaysOn = new UIContainerRect(screenSpaceUI)
 
-
-
-
-
+alwaysOn.height = '90%'
+alwaysOn.hAlign = 'center'
+alwaysOn.vAlign = 'center'
+alwaysOn.width = '100%'
+alwaysOn.isPointerBlocker = false
 
 const openImage = new UIImage(alwaysOn, testToolTexture)
 openImage.name = 'clickable-image'
@@ -151,13 +152,12 @@ openImage.sourceWidth = 1000
 openImage.sourceHeight = 1000
 openImage.hAlign = 'right'
 openImage.vAlign = 'top'
+openImage.positionX = -10
 openImage.isPointerBlocker = true
 openImage.onClick = new OnClick(() => {
-	log('clicked on the open image')
 	container.visible = true
 	container.isPointerBlocker = true
 })
-
 
 // in-world trigger for UI
 
