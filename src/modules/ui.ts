@@ -17,30 +17,20 @@ container.vAlign = 'center'
 
 container.visible = false
 container.isPointerBlocker = false
-
-// // We add separate rect container to act as a background with opacity
-// const bg = new UIContainerRect(container)
-// bg.opacity = 0.2
-// bg.thickness = 1
-// //bg.cornerRadius = 10
-// bg.color = Color4.Teal()  //.FromHexString('#F2E2D2')
-
+container.opacity = 0.9
 
 // --- INVENTORY
 
 export const inventoryContainer = new UIContainerStack(container)
 inventoryContainer.adaptWidth = true
-// inventoryContainer.adaptHeight = true --- you can only set adaptWidth (X)OR adaptHeight for it to work correctly
 inventoryContainer.width = '50%'
 inventoryContainer.height = 130
-//inventoryContainer.top = '100px'
-//inventoryContainer.paddingLeft = 150
 inventoryContainer.color = Color4.FromHexString(`#42a4f4ff`)
 inventoryContainer.hAlign = 'right'
 inventoryContainer.vAlign = 'center' 
 inventoryContainer.stackOrientation = 1
 inventoryContainer.positionX = -10
-
+//inventoryContainer.adaptWidth = true
 
 //generateInventoryItem(btc, 1, inventoryContainer)
 //generateInventoryItem(eth, 2, inventoryContainer)

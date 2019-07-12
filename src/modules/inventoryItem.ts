@@ -26,44 +26,47 @@ export function generateInventoryItem(mineral: Mineral, amount: number, containe
     //bg.id = `mineral`
     bg.thickness = 2
     bg.color = Color4.FromHexString('#84C0C6ff')
-    bg.width = '90%'
-    bg.height = '60px'
-    bg.hAlign = 'center'
+    bg.width = '70px'
+    bg.height = '85px'
+    bg.hAlign = 'left'
 	bg.vAlign = 'center'
-    //bg.  cornerRadius = 15
- 
+	
+    
 	const imageTexture = new Texture(mineral.image)
 
     const image = new UIImage(bg, imageTexture)
-    image.height = '40px'
-    image.width = '40px'
+    image.height = '60px'
+    image.width = '60px'
 	image.sourceTop = 0
     image.sourceLeft = 0
     image.sourceHeight = 1302
 	image.sourceWidth = 1668
 	image.vAlign = `top`
 	image.hAlign = `center`
-	image.positionY = -10
+	image.paddingTop = 5
+
 
   
     const text = new UIText(bg)
     text.value = mineral.name
-    text.vAlign = 'center'
-    text.hAlign = 'left'
-    text.fontAutoSize = true
-    text.fontSize = 1.5
-    text.paddingLeft = 60
+    text.vAlign = 'bottom'
+	text.hAlign = 'left'
+	text.paddingLeft = 2
+    //text.fontAutoSize = true
+    text.fontSize = 11
+    //text.paddingLeft = 60
     text.color = Color4.FromHexString('#0F1217ff')
 
 
     const textAmount = new UIText(bg)
     //textAmount.id = `amount-${mineral}`
     textAmount.value = amount.toString()
-    textAmount.vAlign = 'center'
-    textAmount.hAlign = 'right'
-    textAmount.fontAutoSize = true
-    textAmount.fontSize = 1.5
-    textAmount.paddingRight = 80
+    textAmount.vAlign = 'bottom'
+	textAmount.hAlign = 'left'
+    //textAmount.fontAutoSize = true
+	textAmount.fontSize = 11
+	textAmount.positionX = 35
+    textAmount.paddingRight = 2
     textAmount.color = Color4.FromHexString('#0F1217ff')
 
   }
