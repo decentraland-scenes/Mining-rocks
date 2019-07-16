@@ -1,15 +1,15 @@
 ## Mining rocks
 
-This simple scene shows how to use a basic pop-up UI.
+This simple scene shows how to use a custom UI.
 
 Click on a rock to start mining it. If there are any valuable coins in it, a floating notification will appear.
 
-Open the pop-up UI at any time by clicking the icon on the top-right corner to view your collected coins and the durability of your tool.
+Open the pop-up UI at any time by clicking the icon on the top-right corner to view your collected coins and the durability of your tool. You can also open it by clicking on the cube that's in the center of the scene.
 
 
 ![](screenshot/screenshot.png)
 
-[Explore the scene](https://export-yqpmitxemk.now.sh): this link takes you to a copy of the scene deployed to a remote server where you can interact with it just as if you were running `dcl start` locally.
+[Explore the scene](https://mining-rocks-pjyyjqdfdt.now.sh): this link takes you to a copy of the scene deployed to a remote server where you can interact with it just as if you were running `dcl start` locally.
 
 **Install the CLI**
 
