@@ -1,4 +1,4 @@
-import { } from "./progressBar";
+import { createProgressBar } from "./progressBar";
 import { Mineral } from "./mineral";
 import { createFloatingText } from "./floatingText";
 import { inventoryItems, InventoryItem, generateInventoryItem } from "./inventoryItem";
@@ -58,33 +58,33 @@ export function generateRock(minerals: Mineral[], amounts: number[]){
 
   let speed = rockIndex + 1
 
-  ent.addComponent(
-    new OnClick(e => {
-	 
-	  log("clicked rock")
-      //   let mineral = ent.getComponent(Rock)
-      //mineral.progressBar = createProgressBar(ent, speed, height)
-      
-      mineRock(ent)
-  
-	})
-  )
-
-
 //   ent.addComponent(
-//     new OnPointerDown(e => {
-// 	  let mineral = ent.getComponent(Rock)
+//     new OnClick(e => {
+	 
 // 	  log("clicked rock")
-      
+//       //   let mineral = ent.getComponent(Rock)
 //       //mineral.progressBar = createProgressBar(ent, speed, height)
-//       if (e.hit.length > 4){
-//         log("button A Down", e.hit.length)
-//         log("too far")
-//         engine.removeEntity(mineral.progressBar.getParent())
-        
-//       }
-//     })
+      
+//       mineRock(ent)
+  
+// 	})
 //   )
+
+
+  ent.addComponent(
+    new OnPointerDown(e => {
+	  let mineral = ent.getComponent(Rock)
+	  log("clicked rock")
+      
+      mineral.progressBar = createProgressBar(ent, speed, height)
+      if (e.hit.length > 4){
+        log("button A Down", e.hit.length)
+        log("too far")
+        engine.removeEntity(mineral.progressBar.getParent())
+        
+      }
+    })
+  )
   
 
   engine.addEntity(ent)
@@ -116,4 +116,4 @@ export function mineRock(rock: IEntity){
 	  }
 	}
 	engine.removeEntity(rock)
-  }
+}

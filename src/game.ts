@@ -65,7 +65,7 @@ floor.addComponent(new Transform({
 engine.addEntity(floor)
 
 // Systems
-//engine.addSystem(new ProgressBarUpdate(camera, pick) )
+engine.addSystem(new ProgressBarUpdate(camera, pick) )
 engine.addSystem(new FloatingTextUpdate() )
 
 
@@ -73,23 +73,23 @@ engine.addSystem(new FloatingTextUpdate() )
 
 
 // button down event
-// input.subscribe("BUTTON_DOWN", e => {
-  
-//   if (e.hit && e.hit.length > 4){
-//       log("button A Down", e.hit.length)
-//       log("too far")
-//       for (let bar of progressBars.entities) {
-//         engine.removeEntity(bar.getParent(), true)
-//       }
-//     }
-   
-// })
+input.subscribe("BUTTON_DOWN", ActionButton.POINTER, false, 
+	e => {
+		if (e.hit && e.hit.length > 4){
+			log("button A Down", e.hit.length)
+			log("too far")
+			for (let bar of progressBars.entities) {
+				engine.removeEntity(bar.getParent())
+			}
+   		}
+   	})
 
 // button up esvent
-input.subscribe("BUTTON_UP", e => {
-  log("button up")
-  for (let bar of progressBars.entities) {
-    engine.removeEntity(bar.getParent())
-  }
-})
+input.subscribe("BUTTON_UP", ActionButton.POINTER, false, 
+	e => {
+		log("button up")
+		for (let bar of progressBars.entities) {
+			engine.removeEntity(bar.getParent())
+		}
+	})
 
