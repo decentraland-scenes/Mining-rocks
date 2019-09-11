@@ -25,7 +25,7 @@ export function generateInventoryItem(mineral: Mineral, amount: number, containe
     bg.height = '100px'
     bg.vAlign = "center"
 
-	  const imageTexture = new Texture(mineral.image)
+	const imageTexture = new Texture(mineral.image)
     const image = new UIImage(bg, imageTexture)
     image.height = '40px'
     image.width = '40px'

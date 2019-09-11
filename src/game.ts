@@ -1,8 +1,8 @@
-import { ProgressBarUpdate, ProgressBar, progressBars } from "./modules/progressBar";
+import { ProgressBarUpdate, ProgressBar, progressBars, createProgressBar } from "./modules/progressBar";
 import { Mineral } from "./modules/mineral";
 import { generateRock } from "./modules/rocks";
 import { generateInventoryItem } from "./modules/inventoryItem";
-import { FloatingTextUpdate } from "./modules/floatingText";
+import { FloatingTextUpdate, createFloatingText } from "./modules/floatingText";
 import { Tool } from "./modules/tool";
 
 let rockAmount = 10
@@ -12,6 +12,7 @@ let testImage = "images/rock1.jpg"
 // let btcMaterial = new Material()
 // let ethMaterial = new Material()
 // let manaMaterial = new Material()
+
 
 
 let btc = new Mineral("BTC", testImage)
@@ -75,13 +76,15 @@ engine.addSystem(new FloatingTextUpdate() )
 // button down event
 input.subscribe("BUTTON_DOWN", ActionButton.POINTER, false, 
 	e => {
-		if (e.hit && e.hit.length > 4){
-			log("button A Down", e.hit.length)
-			log("too far")
-			for (let bar of progressBars.entities) {
-				engine.removeEntity(bar.getParent())
+		if (e.hit){
+			if (e.hit.length < 4){
+				createProgressBar(engine.entities[e.hit.entityId], 1, 1)
+			   }
+			else {
+				log("too far", e.hit.length)
+				createFloatingText("Too far", floor )// engine.entities[e.hit.entityId])
 			}
-   		}
+		} 
    	})
 
 // button up esvent

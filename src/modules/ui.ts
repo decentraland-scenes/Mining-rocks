@@ -1,6 +1,35 @@
 
 const screenSpaceUI = new UICanvas()
 
+let toolTexture = new Texture('images/pickaxe.jpeg')
+
+const alwaysOn = new UIContainerRect(screenSpaceUI)
+
+alwaysOn.height = '90%'
+alwaysOn.hAlign = 'right'
+alwaysOn.vAlign = 'center'
+alwaysOn.width = '10%'
+//alwaysOn.isPointerBlocker = false
+
+const openImage = new UIImage(alwaysOn, toolTexture)
+openImage.name = 'clickable-image'
+openImage.width = '50px'
+openImage.height = '50px'
+openImage.sourceWidth = 1000
+openImage.sourceHeight = 1000
+openImage.hAlign = 'right'
+openImage.vAlign = 'top'
+openImage.isPointerBlocker = true
+openImage.onClick = new OnClick(() => {
+	log('clicked on the open image')
+	container.visible = true
+	container.isPointerBlocker = true
+})
+
+
+
+
+
 const container = new UIContainerRect(screenSpaceUI)
 container.width = '90%'
 container.height = '90%'
@@ -53,9 +82,7 @@ toolName.positionX = 20
 toolName.paddingTop = 10
 toolName.color = Color4.FromHexString('#0F1217ff')
 
-let testToolTexture = new Texture('images/pickaxe.jpeg')
-
-const toolPic = new UIImage(toolContainer, testToolTexture)
+const toolPic = new UIImage(toolContainer, toolTexture)
 toolPic.hAlign = 'center'
 toolPic.vAlign = 'center'
 toolPic.sourceLeft = 0
@@ -110,28 +137,6 @@ closeIcon.onClick = new OnClick(() => {
 })
 
 
-const alwaysOn = new UIContainerRect(screenSpaceUI)
-
-alwaysOn.height = '90%'
-alwaysOn.hAlign = 'center'
-alwaysOn.vAlign = 'center'
-alwaysOn.width = '100%'
-alwaysOn.isPointerBlocker = false
-
-const openImage = new UIImage(alwaysOn, testToolTexture)
-openImage.name = 'clickable-image'
-openImage.width = '50px'
-openImage.height = '50px'
-openImage.sourceWidth = 1000
-openImage.sourceHeight = 1000
-openImage.hAlign = 'right'
-openImage.vAlign = 'top'
-openImage.isPointerBlocker = true
-openImage.onClick = new OnClick(() => {
-	log('clicked on the open image')
-	container.visible = true
-	container.isPointerBlocker = true
-})
 
 // in-world trigger for UI
 const uiTrigger = new Entity()
