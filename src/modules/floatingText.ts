@@ -40,7 +40,6 @@ export function createFloatingText(
     textShape.fontSize = 5
     textShape.fontWeight = "bold"
     textShape.color = Color3.Blue()
-    
   }
 
 
