@@ -1,40 +1,42 @@
 ## Mining rocks
 
-This simple scene shows how to use a custom UI.
-
-Click on a rock to start mining it. If there are any valuable coins in it, a floating notification will appear.
-
-Open the pop-up UI at any time by clicking the icon on the top-right corner to view your collected coins and the durability of your tool. You can also open it by clicking on the cube that's in the center of the scene.
+This simple scene shows how to create a custom UI.
 
 
 ![](screenshot/screenshot.png)
 
-[Explore the scene](https://mining-rocks-pjyyjqdfdt.now.sh): this link takes you to a copy of the scene deployed to a remote server where you can interact with it just as if you were running `dcl start` locally.
+This scene shows you:
+- How to create a UI canvas
+- How to add simple elements like text and rectangles to the UI
+- How to add images to the UI
+- How to trigger actions from clicking on UI elements
+- How to open and close the UI
+- How to display a bar in-world over an entity that is filled up gradually
+
+
+
+## Try it out
 
 **Install the CLI**
 
-Download and install the Decentraland CLI by running the following command
+Download and install the Decentraland CLI by running the following command:
 
 ```bash
 npm i -g decentraland
 ```
 
-For a more details, follow the steps in the [Installation guide](https://docs.decentraland.org/documentation/installation-guide/).
-
-
 **Previewing the scene**
 
-Once you've installed the CLI, download this example and navigate to its directory from your terminal or command prompt.
-
-_from the scene directory:_
+Download this example and navigate to its directory, then run:
 
 ```
 $:  dcl start
 ```
 
-Any dependencies are installed and then the CLI will open the scene in a new browser tab automatically.
+Any dependencies are installed and then the CLI opens the scene in a new browser tab.
 
-**Usage**
+**Scene Usage**
+
 
 Click on a rock to mine it, a health bar will appear over the rock until it's fully mined. If the rock contained any valuable coins, a floating notification will appear over the rock.
 
@@ -42,8 +44,14 @@ You can open the UI at any moment. This displays the durability of your tool and
 
 If your tool's durability runs out, you won't be able to mine any more.
 
+Open the pop-up UI at any time by clicking the icon on the top-right corner. You can also open it by clicking on the cube that's in the center of the scene.
+
+
 
 Learn more about how to build your own scenes in our [documentation](https://docs.decentraland.org/) site.
+
+If something doesn’t work, please [file an issue](https://github.com/decentraland-scenes/Awesome-Repository/issues/new).
+
 
 ## Copyright info
 
