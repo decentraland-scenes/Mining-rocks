@@ -1,7 +1,6 @@
-
 const screenSpaceUI = new UICanvas()
 
-let toolTexture = new Texture('images/pickaxe.jpeg')
+const toolTexture = new Texture('images/pickaxe.jpeg')
 
 const alwaysOn = new UIContainerRect(screenSpaceUI)
 
@@ -21,14 +20,10 @@ openImage.hAlign = 'right'
 openImage.vAlign = 'top'
 openImage.isPointerBlocker = true
 openImage.onClick = new OnClick(() => {
-	log('clicked on the open image')
-	container.visible = true
-	container.isPointerBlocker = true
+  log('clicked on the open image')
+  container.visible = true
+  container.isPointerBlocker = true
 })
-
-
-
-
 
 const container = new UIContainerRect(screenSpaceUI)
 container.width = '90%'
@@ -62,7 +57,7 @@ toolContainer.hAlign = 'left'
 toolContainer.vAlign = 'top'
 
 const toolTitle = new UIText(toolContainer)
-toolTitle.value = "Tool:"
+toolTitle.value = 'Tool:'
 toolTitle.fontSize = 20
 toolTitle.vAlign = 'top'
 toolTitle.hAlign = 'left'
@@ -73,7 +68,7 @@ toolTitle.paddingLeft = 10
 toolTitle.color = Color4.FromHexString('#0F1217ff')
 
 const toolName = new UIText(toolContainer)
-toolName.value = "PickAxe"
+toolName.value = 'PickAxe'
 toolName.fontSize = 20
 toolName.vAlign = 'top'
 toolName.width = '150px'
@@ -95,7 +90,7 @@ toolPic.positionX = 20
 toolPic.positionY = -30
 
 const durabilityLabel = new UIText(toolContainer)
-durabilityLabel.value = "Durability"
+durabilityLabel.value = 'Durability'
 durabilityLabel.fontSize = 20
 durabilityLabel.vAlign = 'bottom'
 durabilityLabel.hAlign = 'left'
@@ -107,8 +102,8 @@ durabilityLabel.color = Color4.FromHexString('#0f1217ff')
 
 const durabilityBg = new UIContainerRect(toolContainer)
 durabilityBg.color = Color4.Gray()
-durabilityBg.width = "180px"
-durabilityBg.height = "25px"
+durabilityBg.width = '180px'
+durabilityBg.height = '25px'
 durabilityBg.vAlign = 'bottom'
 durabilityBg.hAlign = 'right'
 durabilityBg.positionX = -55
@@ -116,8 +111,8 @@ durabilityBg.positionY = 5
 
 export const durability = new UIContainerRect(durabilityBg)
 durability.color = Color4.FromHexString('#426d48ff')
-durability.width = "100px"
-durability.height = "25px"
+durability.width = '100px'
+durability.height = '25px'
 durability.vAlign = 'center'
 durability.hAlign = 'left'
 
@@ -131,22 +126,23 @@ closeIcon.sourceWidth = 128
 closeIcon.sourceHeight = 128
 closeIcon.isPointerBlocker = true
 closeIcon.onClick = new OnClick(() => {
-	container.visible = false
-	container.isPointerBlocker = false
-	log('clicked on the close image ', container.visible)
+  container.visible = false
+  container.isPointerBlocker = false
+  log('clicked on the close image ', container.visible)
 })
-
-
 
 // in-world trigger for UI
 const uiTrigger = new Entity()
-const transform = new Transform({ position: new Vector3(5, 1, 5), scale: new Vector3(0.3, 0.3, 0.3) })
+const transform = new Transform({
+  position: new Vector3(5, 1, 5),
+  scale: new Vector3(0.3, 0.3, 0.3)
+})
 uiTrigger.addComponent(transform)
 
 uiTrigger.addComponent(
   new OnClick(() => {
-	container.visible = true
-	container.isPointerBlocker = true
+    container.visible = true
+    container.isPointerBlocker = true
   })
 )
 

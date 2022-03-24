@@ -23,7 +23,7 @@ export class ProgressBar {
 }
 
 // // material for bars
-let greenMaterial = new Material()
+const greenMaterial = new Material()
 greenMaterial.albedoColor = Color3.Green()
 
 // component group grid positions
@@ -39,11 +39,11 @@ export class ProgressBarUpdate implements ISystem {
   }
 
   update(dt: number) {
-    for (let bar of progressBars.entities) {
-      let data = bar.getComponent(ProgressBar)
-      let transform = data.bar.getComponent(Transform)
+    for (const bar of progressBars.entities) {
+      const data = bar.getComponent(ProgressBar)
+      const transform = data.bar.getComponent(Transform)
 
-      let distance = Vector3.DistanceSquared(
+      const distance = Vector3.DistanceSquared(
         this.camera.position,
         transform.position
       )
@@ -61,7 +61,7 @@ export class ProgressBarUpdate implements ISystem {
         durability.width = this.tool.durability.toString().concat('px')
       }
 
-      let width = Scalar.Lerp(0, data.fullLength, data.ratio)
+      const width = Scalar.Lerp(0, data.fullLength, data.ratio)
       transform.scale.x = width
       transform.position.x = data.fullLength / 2 - width / 2
       if (data.ratio > 1) {
@@ -76,7 +76,7 @@ export function createProgressBar(
   speed: number = 1,
   height: number = 1
 ) {
-  let background = new Entity()
+  const background = new Entity()
   background.addComponent(new PlaneShape())
   background.addComponent(new Billboard(true, true, true))
   background.setParent(parent)
@@ -88,7 +88,7 @@ export function createProgressBar(
   )
   engine.addEntity(background)
 
-  let progressBar = new Entity()
+  const progressBar = new Entity()
   progressBar.addComponent(new PlaneShape())
   progressBar.addComponent(greenMaterial)
   progressBar.setParent(background)
