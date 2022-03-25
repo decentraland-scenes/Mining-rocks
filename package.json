@@ -14,8 +14,5 @@
    "devDependencies": {
     "decentraland-ecs": "latest",
     "@dcl/eslint-config": "^1.0.1"
-  },
-  "dependencies": {
-    "@dcl/kernel": "https://sdk-team-cdn.decentraland.org/@dcl/kernel/branch/refactor/persistent-storage/dcl-kernel-1.0.0-1159336310.commit-49316d8.tgz"
   }
 }

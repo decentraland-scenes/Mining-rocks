@@ -4,7 +4,7 @@ import { createFloatingText } from './floatingText'
 import {
   inventoryItems,
   InventoryItem,
-  generateInventoryItem
+  generateInventoryItem,
 } from './inventoryItem'
 import { inventoryContainer } from './ui'
 
@@ -44,7 +44,7 @@ export function generateRock(minerals: Mineral[], amounts: number[]) {
 
   ent.addComponent(
     new Transform({
-      position: new Vector3(x, 0, z)
+      position: new Vector3(x, 0, z),
     })
   )
 
@@ -59,18 +59,6 @@ export function generateRock(minerals: Mineral[], amounts: number[]) {
 
   const speed = rockIndex + 1
 
-  //   ent.addComponent(
-  //     new OnClick(e => {
-
-  // 	  log("clicked rock")
-  //       //   let mineral = ent.getComponent(Rock)
-  //       //mineral.progressBar = createProgressBar(ent, speed, height)
-
-  //       mineRock(ent)
-
-  // 	})
-  //   )
-
   ent.addComponent(
     new OnPointerDown(
       (e) => {
@@ -78,7 +66,7 @@ export function generateRock(minerals: Mineral[], amounts: number[]) {
         log('clicked rock')
 
         mineral.progressBar = createProgressBar(ent, speed, height)
-        if (e.hit.length > 4) {
+        if (e.hit.length > 6) {
           log('button A Down', e.hit.length)
           log('too far')
           engine.removeEntity(mineral.progressBar.getParent())
@@ -89,6 +77,7 @@ export function generateRock(minerals: Mineral[], amounts: number[]) {
   )
 
   engine.addEntity(ent)
+  return ent
 }
 
 export function mineRock(rock: IEntity) {
